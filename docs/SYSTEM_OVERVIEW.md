@@ -132,7 +132,7 @@ High-risk actions ($R \ge 80$) are synchronously intercepted before execution. T
 
 ### 3.7 Cryptographic Audit Ledger
 Every event during simulation is appended to an SHA-256 block ledger:
-- **Sequential Forward Chaining**: $\text{hash}_n = \mathcal{H}(\text{seq}_n \parallel \text{type}_n \parallel \text{payload}_n \parallel \text{ts}_n \parallel \text{hash}_{n-1})$.
+- **Sequential Hash Chaining**: $\text{hash}_n = \mathcal{H}(\text{seq}_n \parallel \text{type}_n \parallel \text{payload}_n \parallel \text{ts}_n \parallel \text{hash}_{n-1})$.
 - **Verification Engine**: Validates the mathematical continuity of the entire event chain with a single click.
 
 <p align="center">

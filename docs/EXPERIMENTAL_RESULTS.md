@@ -42,13 +42,13 @@ Execution latency was measured with microsecond timers across all 120 trials:
 
 | Metric | Measured Value | Operational Comparison |
 | :--- | :--- | :--- |
-| **Arithmetic Mean** | **4.3741 ms** | ~1/10th of local network round-trip ($45\text{ ms}$) |
+| **Arithmetic Mean** | **4.3741 ms** | Local procedural checks (compiled regex, AST parsing, RBAC mapping) |
 | **Sample Median** | **3.9661 ms** | Standard runtime overhead for zero-LLM filter |
 | **Standard Deviation** | **1.4624 ms** | Extremely low latency variance |
 | **95th Percentile ($P_{95}$)** | **5.9837 ms** | Predictable upper latency boundary |
 | **Range $[\min, \max]$** | **$[3.3581, 17.8745]\text{ ms}$** | Max spike occurred during cold-start AST parsing |
 
-**Key Finding**: The deterministic Policy Enforcement Point provides mathematical complete mediation with zero stochastic variance ($\sigma^2 = 0$) and negligible latency overhead ($4.37\text{ ms}$), compared to $500\text{--}2000\text{ ms}$ for neural "LLM-as-a-judge" evaluation.
+**Key Finding**: The deterministic Policy Enforcement Point provides complete mediation with zero stochastic decision variance on defined invariants ($\sigma^2 = 0$) and an empirical mean mediation latency of $4.37\text{ ms}$ ($P_{95} = 5.98\text{ ms}$), contrasting with the latency overhead and ongoing token expenses of secondary neural model evaluation.
 
 ---
 
@@ -84,7 +84,7 @@ The benchmark transparently identified two empirical false negatives where synta
 - **Classification**: **VALID FAILURE (Format Anomaly Evasion)**.
 
 ### Theoretical Takeaway: Baseline Clearance vs. Contextual Intent
-These two failures demonstrate an essential principle in agent cybersecurity: **Syntactic pattern matching cannot replace semantic comprehension.** When an adversarial prompt induces an agent to invoke a tool that falls within its legitimate baseline authorization, purely syntactic regex filters can be evaded through minor linguistic mutations. Defense-in-depth requires combining deterministic boundary enforcement with semantic tripwires.
+These two failures demonstrate an essential principle in agent cybersecurity: **Syntactic pattern matching cannot replace semantic comprehension.** When an adversarial prompt induces an agent to invoke a tool that falls within its legitimate baseline authorization, purely syntactic regex filters can be evaded through lexical mutations. Defense-in-depth requires combining deterministic boundary enforcement with semantic tripwires.
 
 ---
 

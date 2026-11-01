@@ -4,7 +4,7 @@ AegisSim is designed under an uncompromising defensive engineering philosophy:
 
 > **Deterministic security and policy enforcement must NEVER depend on an LLM.**
 
-Autonomous AI agents possess non-deterministic execution characteristics. Relying on an LLM to police another LLM introduces hallucinations, inconsistent verdicts, prompt injection vulnerabilities, and latency. AegisSim decouples policy enforcement from behavioral analysis, executing zero-tolerance deterministic security controls at the infrastructure boundary.
+Autonomous AI agents possess non-deterministic execution characteristics. Relying on an LLM to police another LLM introduces hallucinations, inconsistent verdicts, prompt injection vulnerabilities, and latency. AegisSim decouples policy enforcement from behavioral analysis, executing deterministic policy enforcement controls at the execution boundary.
 
 ---
 

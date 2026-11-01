@@ -85,7 +85,7 @@ graph TB
 
 ### 3.1 Deterministic Policy Enforcement Point (PEP)
 
-The PEP acts as an impenetrable gateway between the AI agent's decision loop and the execution sandbox. Every tool invocation proposed by an agent must pass 10 sequential deterministic stages:
+The PEP acts as an execution-layer reference monitor between the AI agent's decision loop and the simulation sandbox. Every tool invocation proposed by an agent must pass 10 sequential deterministic stages:
 
 ```mermaid
 flowchart TD
@@ -151,7 +151,7 @@ When an agent proposes an action with a computed risk score $R \ge 80$, the exec
 
 ### 3.4 Cryptographically Tamper-Evident Event Ledger
 
-Auditability is fundamental to AI safety forensics. AegisSim records every simulation event in a forward-chained SHA-256 block ledger:
+Auditability is fundamental to AI safety forensics. AegisSim records every simulation event in a sequential, tamper-evident SHA-256 block ledger:
 
 $$\text{event\_hash}_n = \mathcal{H}\Big(\text{seq}_n \;\parallel\; \text{event\_type}_n \;\parallel\; \text{payload}_n \;\parallel\; \text{timestamp}_n \;\parallel\; \text{event\_hash}_{n-1}\Big)$$
 

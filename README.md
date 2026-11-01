@@ -69,7 +69,7 @@ Instead, AegisSim establishes a deterministic, zero-LLM **Policy Enforcement Poi
 - **Deterministic Policy Enforcement**: 10-stage sequential inspection pipeline running in microseconds with zero LLM dependence.
 - **Adversarial Scenario Execution**: 23 pre-configured scenarios spanning 9 threat vector categories (prompt injection, privilege escalation, destructive SQL, canary harvesting, and social engineering).
 - **Synchronous Human-in-the-Loop (HITL) Review**: Real-time interception and state freezing for actions exceeding risk thresholds ($R \ge 80$).
-- **Tamper-Evident SHA-256 Event Ledger**: Forward-secure cryptographic block hashing linking every simulation step and policy decision.
+- **Tamper-Evident SHA-256 Event Ledger**: Sequential cryptographic block hashing linking every simulation step and policy decision, delivering mathematical tamper-evidence.
 - **Dual-Layer Evaluation Engine**: Mathematical primacy of deterministic security rules over qualitative LLM commentary.
 - **Executive Analytics Dashboard**: Real-time SQL aggregation computing 11 core fleet KPI metrics and 14-day time series.
 - **Automated Forensic PDF Reports**: Downloadable 13-point forensic assessment documents generated via ReportLab.
@@ -262,7 +262,7 @@ flowchart TD
 
 The research evaluates five core empirical questions across a pre-registered benchmark battery of **241 physical simulation trials**:
 - **Pre-Registered Ground Truth**: Every trial ID, expected tool invocation, and policy verdict was formally pre-registered in `research/experiments/pre_registered_ground_truth.json` prior to execution.
-- **Database Reset Protocol**: Full database rollback and re-seeding between experimental batteries to eliminate state contamination.
+- **Logical Tenant Isolation Protocol**: Experimental resets were conducted via logical tenant isolation. Each experimental battery was provisioned with newly seeded synthetic enterprise organizations (with timestamped slugs and unique UUIDs) and fresh agent contexts. Contexts and sessions were created clean per trial with zero conversation or session memory leakage across runs. Physical tables (`simulation_events`, `tool_execution_audits`, `approval_requests`) were not truncated or re-migrated, preserving historical rows in storage without cross-tenant interference.
 - **Physical Denominators**: Exactly 241 physical trials ($120 + 36 + 30 + 45 + 10$), mapped to 283 downstream analytical metric slots due to multi-hypothesis evaluations.
 - **Statistical Rigor**: Proportions reported with **nominal unadjusted binomial Wilson score intervals at 95% confidence**.
 
@@ -309,15 +309,15 @@ AegisSim transparently documents the two empirical false negatives identified du
 
 ## Research Contributions & Literature Comparison
 
-| Dimension | Neural Evaluators / "LLM-as-a-Judge" (Zheng et al., 2023) | Prompt Guardrails (NeMo Guardrails, Rebedea et al., 2023) | Offline Attack Benchmarks (InjecAgent, Zhan et al., 2024) | AegisSim (`v0.1.0-alpha`) |
+| Dimension | Neural Evaluators / "LLM-as-a-Judge" (Zheng et al., 2023) | Guardrail Toolkits (NeMo Guardrails, Rebedea et al., 2023; Llama Guard) | Offline Attack Benchmarks (InjecAgent, Zhan et al., 2024; ToolEmu, Ruan et al., 2023) | AegisSim (`v0.1.0-alpha`) |
 | :--- | :--- | :--- | :--- | :--- |
-| **Enforcement Layer** | Secondary LLM prompt evaluation | Auxiliary embedding classifier or Colang script | Static prompt dataset scoring | **Deterministic reference monitor at runtime tool boundary** |
-| **Decision Determinism**| **Non-deterministic** ($\sigma^2 > 0$) | Mixed; classifier thresholds exhibit drift | Deterministic offline string matching | **100% deterministic** ($\sigma^2 = 0$ on defined rules) |
-| **Injection Resilience**| **Vulnerable**: secondary LLM can be jailbroken | **Vulnerable**: adversarial prompts bypass classifiers | N/A (Offline passive evaluation) | **Immune**: Policy engine executes zero LLM inference |
-| **Runtime Overhead** | High: $500\text{--}2000\text{ ms}$ per tool call | Moderate: $50\text{--}200\text{ ms}$ | N/A (Static evaluation) | **Negligible**: $4.37\text{ ms}$ mean mediation latency |
-| **Environment** | Mocked function calls or text outputs | Chatbot dialogue filtering | Simulated offline text prompts | **Interactive 21-table PostgreSQL relational sandbox** |
-| **Forensic Audit** | Standard ephemeral application logs | Application telemetry | Static benchmark logs | **Cryptographically chained SHA-256 event ledger** |
-| **Failure Transparency**| Stochastic error rates without root-cause bounds | Boundary misclassifications | Static error tables | **Deep qualitative failure case studies (`SC-04`, `SC-11`)** |
+| **Enforcement Layer** | Secondary LLM prompt evaluation | Conversational dialogue rails (Colang) evaluated via embeddings or auxiliary models | Static prompt datasets or LM-emulated tool stubs | **Deterministic reference monitor at runtime tool boundary** |
+| **Decision Determinism**| **Non-deterministic** ($\sigma^2 > 0$ across identical inputs) | Mixed; procedural rails deterministic, but embedding classifiers exhibit boundary drift | Deterministic offline string matching or simulated scoring | **100% deterministic decision logic** ($\sigma^2 = 0$ on defined rules) |
+| **Susceptibility to Injection**| **Vulnerable**: secondary evaluating model can be influenced or jailbroken | Conversational rails vulnerable to out-of-distribution semantic evasion | N/A (Passive evaluation measuring base model vulnerability) | Policy engine executes zero LLM inference; syntactic heuristics remain susceptible to lexical evasion (`SC-04`, `SC-11`) |
+| **Runtime Overhead** | Secondary model inference latency per evaluation step plus ongoing API token cost | Varies by rail configuration (embedding similarity, vector scoring, or auxiliary LLM call) | N/A (Offline batch evaluation; zero operational runtime overhead) | Procedural execution; empirical mean mediation latency of **$4.37\text{ ms}$** ($P_{95} = 5.98\text{ ms}$) measured on $N=120$ physical trials |
+| **Environment** | Mocked function calls or text outputs | Conversational dialogue streams and application integrations | Static benchmark suites or LM-emulated tool environments | **Interactive 21-table PostgreSQL relational sandbox** |
+| **Forensic Audit** | Standard ephemeral application logs | Application telemetry and dialogue traces | Static benchmark run logs | **Sequential SHA-256 block hash ledger with chain verification** |
+| **Failure Transparency**| Aggregate benchmark scores without root-cause failure cases | Operational exception logs and boundary classification metrics | Aggregate attack success rates across static test suites | **Pre-registered ground truth with deep failure case studies (`SC-04`, `SC-11`)** |
 
 *For complete comparative analysis, see [docs/RESEARCH_CONTRIBUTIONS.md](docs/RESEARCH_CONTRIBUTIONS.md).*
 

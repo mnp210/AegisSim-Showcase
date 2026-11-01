@@ -33,10 +33,10 @@ If you discover a potential security vulnerability within AegisSim:
 
 ---
 
-## Defensive Architecture & Guarantees
+## Defensive Architecture & Security Invariants
 
-AegisSim enforces the following security invariants:
-- **Deterministic Policy Enforcement**: Authorization decisions do not rely on LLM outputs and cannot be subverted via prompt injection.
+AegisSim enforces the following architectural security invariants:
+- **Deterministic Policy Enforcement**: Authorization decisions execute procedural checks with zero LLM dependence, preventing direct model manipulation at the PEP layer, while noting that syntactic filters require comprehensive pattern coverage to prevent lexical evasions.
 - **Cryptographic Audit Provenance**: Execution events are chained using SHA-256 blocks; tampering with past events breaks the cryptographic proof chain.
 - **Role-Based Access Control**: 3-tier access control (`admin`, `analyst`, `viewer`) is enforced at the FastAPI dependency layer.
 - **Zero Real PII Exposure**: The platform generates and utilizes exclusively synthetic enterprise personas, records, and honeytokens.

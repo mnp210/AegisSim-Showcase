@@ -4,13 +4,12 @@ This step-by-step walkthrough provides a verifiable demonstration script for tec
 
 ---
 
-## Prerequisites & Service Startup
+## Prerequisites & Demonstration Context
 
 ### Step 1: Launch Application Stack
-From the project root (`D:\AEissim`), ensure Docker containers are active:
+This walkthrough illustrates the live demonstration workflow executed during academic supervisor reviews and technical evaluations. In the private evaluation environment, the container stack is launched via Docker Compose:
 
 ```bash
-cp .env.example .env
 docker compose up -d
 ```
 
@@ -35,9 +34,9 @@ docker compose up -d
 ### Step 2: Access Platform & Authenticate
 1. Open your web browser and navigate to `http://localhost:3000`.
 2. Click **Login** in the top navigation bar.
-3. Authenticate with the default demonstration analyst credentials:
-   - **Email**: `admin@aegissim.internal`
-   - **Password**: `aegissim_secure_dev_pass_2026`
+3. Authenticate with demonstration analyst credentials:
+   - **Email**: `admin@aegissim.org` (or configured demonstration account)
+   - **Role Clearance**: Security Analyst / Administrator
 
 **Expected Observable Result**:
 - Browser redirects to the **Executive Analytics Dashboard** (`/dashboard`).
