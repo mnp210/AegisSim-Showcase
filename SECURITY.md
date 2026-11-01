@@ -18,18 +18,18 @@ AegisSim is a platform dedicated to evaluating AI agent security, and we take ou
 If you discover a potential security vulnerability within AegisSim:
 
 1. **Do NOT open a public GitHub issue.**
-2. Report the vulnerability privately to the project maintainers via email at:  
-   `security@aegissim.internal` (or via private GitHub Vulnerability Reporting on the repository).
+2. Report the vulnerability privately via **GitHub Private Vulnerability Reporting** on this repository or directly to the project author at:  
+   `mnpwizard@gmail.com`.
 3. Include the following details in your report:
-   - Vulnerability description and impact.
-   - Exact steps or minimal reproducible script to trigger the issue.
-   - Affected component (Backend, Frontend, Sandbox, PEP, Database, or Ledger).
+   - Vulnerability description and potential security impact.
+   - Minimal reproducible steps or script to trigger the issue.
+   - Affected component (Backend API, Frontend, PEP, Sandbox, Database, or Ledger).
    - Potential remediation or fix suggestions, if available.
 
 ### Disclosure Timeline
 - **Acknowledgment**: Within 48 hours of receipt.
 - **Triage & Assessment**: Within 5 business days.
-- **Patch & Release**: High and critical vulnerabilities will be prioritized with an advisory and patch release within 14 days.
+- **Patch & Advisory**: High and critical vulnerabilities will be prioritized with an advisory and release within 14 days.
 
 ---
 

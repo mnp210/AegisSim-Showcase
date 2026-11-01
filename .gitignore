@@ -1,0 +1,54 @@
+# Secrets & Environment Variables
+.env
+.env.*
+*.env
+*.pem
+*.key
+*.cert
+*.pfx
+secrets/
+credentials.json
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.bak
+
+# Editor Directories & Files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Node / Web Build Artifacts
+node_modules/
+.next/
+dist/
+build/
+coverage/
+.turbo/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python & Runtime Artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Databases & Local Dumps
+*.sqlite3
+*.db
+*.dump
+*.sql
+*.tar.gz
